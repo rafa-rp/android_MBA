@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_comments.xml" value="0.49682971014492755" />
+        <entry key="app/src/main/res/drawable-v24/send_btn.xml" value="0.37916666666666665" />
+        <entry key="app/src/main/res/drawable-v24/send_btn_disable.xml" value="0.37916666666666665" />
+        <entry key="app/src/main/res/layout/activity_comments.xml" value="0.1696035242290749" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
       </map>
     </option>
