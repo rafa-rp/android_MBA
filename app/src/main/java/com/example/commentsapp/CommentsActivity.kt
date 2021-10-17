@@ -25,10 +25,10 @@ class CommentsActivity : AppCompatActivity() {
 //        if (BuildConfig.DEBUG) {
 //            Firebase.database.useEmulator("10.0.2.2", 9000)
 //        }
-
         binding = ActivityCommentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Inicializ o Firebase e o adapter
         db = Firebase.database
         val messagesRef = db.reference.child(MESSAGES_CHILD)
 
@@ -43,11 +43,15 @@ class CommentsActivity : AppCompatActivity() {
         binding.messageRecyclerView.adapter = adapter
 
 
-        // Disable the send button when there's no text in the input field
-        // See MyButtonObserver for details
+        // Possibilita o Scrool das mensagens
+        adapter.registerAdapterDataObserver(
+            ScrollObserver(binding.messageRecyclerView, adapter, manager)
+        )
+
+        // Disabilita o botão de enviar
         binding.messageEditText.addTextChangedListener(ButtonDisable(binding.sendButton))
 
-        // When the send button is clicked, send a text message
+        // Envia o texto escrito para o Firebase Realtime DataBase
         binding.sendButton.setOnClickListener {
             val commentMessage = CommentMessage(
                 binding.messageEditText.text.toString(),
