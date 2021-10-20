@@ -28,7 +28,7 @@ class CommentsActivity : AppCompatActivity() {
         binding = ActivityCommentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicializ o Firebase e o adapter
+        // Inicializar o Firebase e o adapter
         db = Firebase.database
         val messagesRef = db.reference.child(MESSAGES_CHILD)
 
