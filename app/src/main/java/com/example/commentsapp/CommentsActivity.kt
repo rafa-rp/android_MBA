@@ -34,6 +34,7 @@ class CommentsActivity : AppCompatActivity() {
 
         val options = FirebaseRecyclerOptions.Builder<CommentMessage>()
             .setQuery(messagesRef, CommentMessage::class.java)
+            .setLifecycleOwner(this)
             .build()
         adapter = CommentMessageAdapter(options, ANONYMOUS)
         binding.progressBar.visibility = ProgressBar.INVISIBLE
@@ -53,10 +54,10 @@ class CommentsActivity : AppCompatActivity() {
 
         // Envia o texto escrito para o Firebase Realtime DataBase
         binding.sendButton.setOnClickListener {
-            val commentMessage = CommentMessage(
-                binding.messageEditText.text.toString(),
-                ANONYMOUS
-            )
+            val commentMessage = CommentMessage()
+            commentMessage.name = ANONYMOUS
+            commentMessage.text = binding.messageEditText.text.toString()
+
             db.reference.child(MESSAGES_CHILD).push().setValue(commentMessage)
             binding.messageEditText.setText("")
         }
